@@ -34,15 +34,15 @@ class HomePage extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.only(top: 24.0, left: 4, right: 4),
           child: Column(
-            children: [
-              const Text(
+            children: const [
+              Text(
                 'Tasks',
                 style: TextStyle(
                   fontSize: 24,
                   fontWeight: FontWeight.w700,
                 ),
               ),
-              const SizedBox(height: 20),
+              SizedBox(height: 20),
               Expanded(
                 child: TasksList(),
               ),
