@@ -16,8 +16,7 @@ class TasksList extends StatelessWidget {
             final task = notifier.tasks[index];
             return TaskCard(
               taskIndex: index,
-              taskTitle: task.name,
-              isChecked: task.isDone,
+              task: task,
             );
           });
     });

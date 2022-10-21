@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:todo/models/task.dart';
 import 'package:todo/models/all_tasks.dart';
 import 'package:provider/provider.dart';
 import 'package:todo/screens/edit_task_window.dart';
@@ -6,14 +7,12 @@ import 'package:todo/screens/edit_task_window.dart';
 class TaskCard extends StatefulWidget {
   TaskCard({
     super.key,
+    required this.task,
     required this.taskIndex,
-    required this.taskTitle,
-    this.isChecked = false,
   });
 
+  Task task;
   int taskIndex;
-  final String taskTitle;
-  bool isChecked;
 
   @override
   State<TaskCard> createState() => _TaskCardState();
@@ -26,18 +25,19 @@ class _TaskCardState extends State<TaskCard> {
       child: CheckboxListTile(
         controlAffinity: ListTileControlAffinity.leading,
         title: Text(
-          widget.taskTitle,
-          style: (widget.isChecked)
+          widget.task.name,
+          style: (widget.task.isDone)
               ? TextStyle(
                   decoration: TextDecoration.lineThrough,
                   color: Colors.grey.shade600,
                 )
               : null,
         ),
-        value: widget.isChecked,
+        value: widget.task.isDone,
         onChanged: (bool? value) {
+          context.read<AllTasks>().toggleDoneTask(widget.task);
           setState(() {
-            widget.isChecked = value!;
+            widget.task.isDone = value!;
           });
         },
         secondary: SizedBox(
@@ -57,7 +57,7 @@ class _TaskCardState extends State<TaskCard> {
                           bottom: MediaQuery.of(context).viewInsets.bottom,
                         ),
                         child: EditTaskWindow(
-                          taskTitle: widget.taskTitle,
+                          taskTitle: widget.task.name,
                           taskIndex: widget.taskIndex,
                         ),
                       ),
