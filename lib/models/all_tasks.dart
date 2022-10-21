@@ -2,7 +2,6 @@ import 'dart:collection';
 
 import 'task.dart';
 import 'package:flutter/cupertino.dart';
-import 'dart:collection';
 
 class AllTasks extends ChangeNotifier {
   final List<Task> _tasks = [
@@ -16,6 +15,10 @@ class AllTasks extends ChangeNotifier {
 
   int get taskCount {
     return _tasks.length;
+  }
+
+  Task getByIndex(int index) {
+    return _tasks[index];
   }
 
   UnmodifiableListView<Task> get tasks {

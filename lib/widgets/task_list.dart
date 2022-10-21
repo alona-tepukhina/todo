@@ -13,10 +13,8 @@ class TasksList extends StatelessWidget {
       return ListView.builder(
           itemCount: notifier.taskCount,
           itemBuilder: (context, index) {
-            final task = notifier.tasks[index];
             return TaskCard(
               taskIndex: index,
-              task: task,
             );
           });
     });

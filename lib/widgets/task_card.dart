@@ -7,11 +7,9 @@ import 'package:todo/screens/modal_task_window.dart';
 class TaskCard extends StatefulWidget {
   TaskCard({
     super.key,
-    required this.task,
     required this.taskIndex,
   });
 
-  Task task;
   int taskIndex;
 
   @override
@@ -21,23 +19,25 @@ class TaskCard extends StatefulWidget {
 class _TaskCardState extends State<TaskCard> {
   @override
   Widget build(BuildContext context) {
+    Task task = context.read<AllTasks>().getByIndex(widget.taskIndex);
+
     return Card(
       child: CheckboxListTile(
         controlAffinity: ListTileControlAffinity.leading,
         title: Text(
-          widget.task.name,
-          style: (widget.task.isDone)
+          task.name,
+          style: (task.isDone)
               ? TextStyle(
                   decoration: TextDecoration.lineThrough,
                   color: Colors.grey.shade600,
                 )
               : null,
         ),
-        value: widget.task.isDone,
+        value: task.isDone,
         onChanged: (bool? value) {
-          context.read<AllTasks>().toggleDoneTask(widget.task);
+          context.read<AllTasks>().toggleDoneTask(task);
           setState(() {
-            widget.task.isDone = value!;
+            task.isDone = value!;
           });
         },
         secondary: SizedBox(
@@ -57,7 +57,7 @@ class _TaskCardState extends State<TaskCard> {
                           bottom: MediaQuery.of(context).viewInsets.bottom,
                         ),
                         child: ModalTaskWindow(
-                          taskTitle: widget.task.name,
+                          taskTitle: task.name,
                           taskIndex: widget.taskIndex,
                         ),
                       ),
