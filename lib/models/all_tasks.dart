@@ -33,16 +33,13 @@ class AllTasks extends ChangeNotifier {
     notifyListeners();
   }
 
-  void deleteTask(String name) {
-    _tasks.removeWhere((element) => element.name == name);
+  void deleteTask(int index) {
+    _tasks.removeAt(index);
     notifyListeners();
   }
 
-  void editTask(String name, String newName) {
-    Task tmpTask = _tasks.firstWhere((element) => element.name == name);
-    int tmpInd = _tasks.indexOf(tmpTask);
-    tmpTask.name = newName;
-    _tasks[tmpInd] = tmpTask;
+  void editTask(int index, String newName) {
+    _tasks[index].name = newName;
 
     notifyListeners();
   }

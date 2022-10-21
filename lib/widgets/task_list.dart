@@ -15,11 +15,9 @@ class TasksList extends StatelessWidget {
           itemBuilder: (context, index) {
             final task = notifier.tasks[index];
             return TaskCard(
+              taskIndex: index,
               taskTitle: task.name,
               isChecked: task.isDone,
-              // checkBoxCallback: () {
-              //   notifier.toggleDoneTask(task);
-              // },
             );
           });
     });

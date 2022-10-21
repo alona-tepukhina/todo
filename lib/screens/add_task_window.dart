@@ -40,8 +40,9 @@ class AddTaskWindow extends StatelessWidget {
             ),
             ElevatedButton(
               onPressed: () {
-                Provider.of<AllTasks>(context, listen: false)
-                    .addTask(taskTitle);
+                // Provider.of<AllTasks>(context, listen: false)
+                //     .addTask(taskTitle);
+                context.read<AllTasks>().addTask(taskTitle);
                 Navigator.pop(context);
               },
               child: const Text(

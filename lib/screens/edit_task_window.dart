@@ -5,10 +5,11 @@ import 'package:todo/models/all_tasks.dart';
 class EditTaskWindow extends StatefulWidget {
   EditTaskWindow({
     Key? key,
+    required this.taskIndex,
     required this.taskTitle,
-    //required this.isDone,
   }) : super(key: key);
 
+  int taskIndex;
   String taskTitle;
 
   @override
@@ -63,8 +64,7 @@ class _EditTaskWindowState extends State<EditTaskWindow> {
             ),
             ElevatedButton(
               onPressed: () {
-                Provider.of<AllTasks>(context, listen: false)
-                    .editTask(widget.taskTitle, newTitle);
+                context.read<AllTasks>().editTask(widget.taskIndex, newTitle);
                 Navigator.pop(context);
               },
               child: const Text(

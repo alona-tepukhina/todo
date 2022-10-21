@@ -6,14 +6,14 @@ import 'package:todo/screens/edit_task_window.dart';
 class TaskCard extends StatefulWidget {
   TaskCard({
     super.key,
+    required this.taskIndex,
     required this.taskTitle,
     this.isChecked = false,
-    //required this.checkBoxCallback,
   });
 
+  int taskIndex;
   final String taskTitle;
   bool isChecked;
-  //final Function checkBoxCallback;
 
   @override
   State<TaskCard> createState() => _TaskCardState();
@@ -58,6 +58,7 @@ class _TaskCardState extends State<TaskCard> {
                         ),
                         child: EditTaskWindow(
                           taskTitle: widget.taskTitle,
+                          taskIndex: widget.taskIndex,
                         ),
                       ),
                     ),
@@ -65,11 +66,9 @@ class _TaskCardState extends State<TaskCard> {
                 },
               ),
               IconButton(
-                //icon: const Icon(Icons.edit),
                 icon: const Icon(Icons.delete),
                 onPressed: () {
-                  Provider.of<AllTasks>(context, listen: false)
-                      .deleteTask(widget.taskTitle);
+                  context.read<AllTasks>().deleteTask(widget.taskIndex);
                 },
               ),
             ],
