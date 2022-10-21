@@ -19,7 +19,9 @@ class TaskCard extends StatefulWidget {
 class _TaskCardState extends State<TaskCard> {
   @override
   Widget build(BuildContext context) {
-    Task task = context.read<AllTasks>().getByIndex(widget.taskIndex);
+    Task task =
+        //    context.select((AllTasks tasks) => tasks.getByIndex(widget.taskIndex));
+        context.read<AllTasks>().getByIndex(widget.taskIndex);
 
     return Card(
       child: CheckboxListTile(

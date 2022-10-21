@@ -30,7 +30,7 @@ class _ModalTaskWindowState extends State<ModalTaskWindow> {
 
   @override
   Widget build(BuildContext context) {
-    bool editOrAdd = (widget.taskTitle != null);
+    bool isEditMode = (widget.taskTitle != null);
 
     _controller.text = widget.taskTitle ?? '';
 
@@ -52,7 +52,7 @@ class _ModalTaskWindowState extends State<ModalTaskWindow> {
             TextField(
               maxLines: 2,
               controller: _controller,
-              //autofocus: true,
+              autofocus: true,
               textAlign: TextAlign.center,
               decoration: const InputDecoration(
                 hintText: 'Task text',
@@ -65,7 +65,7 @@ class _ModalTaskWindowState extends State<ModalTaskWindow> {
             ),
             ElevatedButton(
               onPressed: () {
-                if (editOrAdd) {
+                if (isEditMode) {
                   context
                       .read<AllTasks>()
                       .editTask(widget.taskIndex!, newTitle);
@@ -76,7 +76,7 @@ class _ModalTaskWindowState extends State<ModalTaskWindow> {
                 Navigator.pop(context);
               },
               child: Text(
-                (editOrAdd) ? 'Edit Task' : 'Add task',
+                (isEditMode) ? 'Edit Task' : 'Add task',
                 textAlign: TextAlign.center,
                 style: const TextStyle(color: Colors.greenAccent),
               ),
