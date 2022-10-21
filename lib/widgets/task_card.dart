@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:todo/models/task.dart';
 import 'package:todo/models/all_tasks.dart';
 import 'package:provider/provider.dart';
-import 'package:todo/screens/edit_task_window.dart';
+import 'package:todo/screens/modal_task_window.dart';
 
 class TaskCard extends StatefulWidget {
   TaskCard({
@@ -56,7 +56,7 @@ class _TaskCardState extends State<TaskCard> {
                         padding: EdgeInsets.only(
                           bottom: MediaQuery.of(context).viewInsets.bottom,
                         ),
-                        child: EditTaskWindow(
+                        child: ModalTaskWindow(
                           taskTitle: widget.task.name,
                           taskIndex: widget.taskIndex,
                         ),

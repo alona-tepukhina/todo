@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:todo/widgets/task_card.dart';
-import 'package:todo/screens/add_task_window.dart';
 import 'package:todo/widgets/task_list.dart';
+import 'package:todo/screens/modal_task_window.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -21,7 +20,7 @@ class HomePage extends StatelessWidget {
                       padding: EdgeInsets.only(
                         bottom: MediaQuery.of(context).viewInsets.bottom,
                       ),
-                      child: AddTaskWindow(),
+                      child: ModalTaskWindow(),
                     ),
                   ));
         },
